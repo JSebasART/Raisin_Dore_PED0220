@@ -6,7 +6,8 @@
 - Adolfo Alejandro Martínez Portillo    00109220
 - María José Morales Ávalos             00155020
 
-## DESCRIPCIÓN DEL PROYECTO: Programa creado para una tienda de vinos el cual contiene un  inventario muy completo donde se pueden agregar , quitar , o mofificar informacion de los vinos con los que cuenta l atienda , asi mismo se encarga de llenar pedidos para los clientes de forma sencilla , contando con una estructuta de tipo carrito de compras
+## DESCRIPCIÓN DEL PROYECTO: 
+Programa creado para una tienda de vinos el cual contiene un  inventario muy completo donde se pueden agregar , quitar , o mofificar informacion de los vinos con los que cuenta la tienda  asi mismo se encarga de llenar pedidos para los clientes de forma sencilla , contando con una estructuta de tipo carrito de compras
 donde el usuario podra elegir de entre lod vinos disponibles , eliminar un producto de su carrito por medio de su codido  y por ultimo este programa tambien presenta las gancias
 de las ventas totales de vinos.
 
