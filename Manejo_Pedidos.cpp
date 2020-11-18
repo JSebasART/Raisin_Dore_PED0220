@@ -427,7 +427,7 @@ void llenandoPedido(){
 
     cout << "\n\tIngrese el nombre del cliente: "; getline (cin, llenando.nombre);
     cout << "\n\tIngrese el DUI del cliente: "; cin >> llenando.dui; cin.ignore();
-
+    
     while(status){
         cout << "\n\t-------Carrito de compras ------" << endl;
         cout << "\n\t1. Agregar nuevo producto" << endl;
