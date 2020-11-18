@@ -307,7 +307,13 @@ void borrarPorCodigo (vector <Vinos> &listaProductos, int codigo){
                 break;
             }
         }
-        modificarbotellasEliminacion(aux);
+        int codigo = aux.id;
+        
+        for (auto iter = lista_vinos.begin(); iter != lista_vinos.end(); ++iter){
+            if (iter->id == codigo){
+            iter->botellas += 1;
+        }
+    }
  
         if (encontrado == false){
             cout << "No habia ningun producto con ese nombre" << endl;
@@ -392,16 +398,6 @@ void modificarbotellas (Vinos aux){
     for (auto iter = lista_vinos.begin(); iter != lista_vinos.end(); ++iter){
         if (iter->id == codigo){
             iter->botellas -= 1;
-        }
-    }
-}
-
-void modificarbotellasEliminacion (Vinos aux){
-    int codigo = aux.id;
-
-    for (auto iter = lista_vinos.begin(); iter != lista_vinos.end(); ++iter){
-        if (iter->id == codigo){
-            iter->botellas += 1;
         }
     }
 }
@@ -527,7 +523,6 @@ int main(){
         cout << endl;
         cout << "\n\t **** Bienvenido a Raisin Dore ****";
         cout << "\n\tComo podemos ayudarte?" << endl;
-        cout << endl;
         cout << "\n\t1. Realizar Pedidos";
         cout << "\n\t2. Administrar Inventario"; 
         //  calcular ganacias (aqui va esa opcion)
