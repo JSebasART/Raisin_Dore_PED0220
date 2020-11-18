@@ -316,7 +316,7 @@ void borrarPorCodigo (vector <Vinos> &listaProductos, int codigo){
     }
  
         if (encontrado == false){
-            cout << "No habia ningun producto con ese nombre" << endl;
+            cout << "No habia ningun producto con ese codigo" << endl
         }
     }
 }
