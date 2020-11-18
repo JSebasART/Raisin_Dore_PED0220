@@ -316,7 +316,7 @@ void borrarPorCodigo (vector <Vinos> &listaProductos, int codigo){
     }
  
         if (encontrado == false){
-            cout << "No habia ningun producto con ese codigo" << endl
+            cout << "No habia ningun producto con ese codigo" << endl;
         }
     }
 }
@@ -427,7 +427,7 @@ void llenandoPedido(){
 
     cout << "\n\tIngrese el nombre del cliente: "; getline (cin, llenando.nombre);
     cout << "\n\tIngrese el DUI del cliente: "; cin >> llenando.dui; cin.ignore();
-    
+
     while(status){
         cout << "\n\t-------Carrito de compras ------" << endl;
         cout << "\n\t1. Agregar nuevo producto" << endl;
@@ -436,7 +436,7 @@ void llenandoPedido(){
         cout << "\n\t4. Finalizar pedido" << endl;
         int opcion;
         cout << "\n\tIngrese la opcion que desea ejecutar: "; cin >> opcion; cin.ignore();
-    
+
         switch (opcion){
             case 1: 
                 MostrarInventarioparaVenta (lista_compras);
