@@ -526,21 +526,6 @@ void menuPedidos(){
     }
 }
 
-double ganacias_totales (queue <Pedido> lista){
-    queue <Pedido> aux = lista;
-    double ganacias = 0;
-    if (aux.empty()){
-        cout << "\n\tCola de pedidos vacia, no han habido ventas..."  << endl;
-    }
-    else{
-        while (!aux.empty()){
-            ganacias += aux.front().total;
-            aux.pop();
-        }
-    }
-    return ganacias;
-}
-
 int main(){
     int opcion;
     bool status = true;
@@ -556,7 +541,6 @@ int main(){
         switch (opcion){
             case 1: menuPedidos(); break;
             case 2: menuInventraio(); break;
-            case 3: cout << "\n\tLas ganancias totales de la venta de vinos son: $" << ganacias_totales(cola_pedidos) << endl; break;
             case 4: status = false; break;
             default: cout << "\n\tOpcion ingresada no valida";
         }
