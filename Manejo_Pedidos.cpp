@@ -20,7 +20,7 @@ typedef Vinos vino;
 struct Pedido{
     int dui;
     string nombre;
-    int total;
+    double total;
     bool pagado = false;
     vector <Vinos> lista_de_compras;
 };
@@ -32,9 +32,9 @@ queue <Pedido> cola_pedidos;
 Vinos llenandovino(){
     vino vinolleno;
     cout << "\n\tCodigo del vino: "; cin >> vinolleno.id; cin.ignore();
-    cout << "\n\tNombre del vino: "; getline (cin, vinolleno.nombre);
-    cout << "\n\tA\244o de la cosecha: "; cin >> vinolleno.Cosecha; cin.ignore();
-    cout << "\n\tIngrese la cantidad de botellas: "; cin >> vinolleno.botellas;
+    cout << "\tNombre del vino: "; getline (cin, vinolleno.nombre);
+    cout << "\tA\244o de la cosecha: "; cin >> vinolleno.Cosecha; cin.ignore();
+    cout << "\tIngrese la cantidad de botellas: "; cin >> vinolleno.botellas;
 
     /* Pidiendo el tipo de vino */
     
@@ -55,8 +55,8 @@ Vinos llenandovino(){
         cout << "\n\tH -- Merlot Rose\t";
         cout << "\n\t-----------VINOS ESPUMADOS----------\t";
         cout << "\n\tI -- Shiraz\t";
-        cout << "\n\tJ -- Champagne\t";
-        cout << "\n\tIngrese el tipo de vino: "; cin>>opcion; cin.ignore();
+        cout << "\n\tJ -- Champagne\t\n";
+        cout << "\n\tIngrese el tipo de vino: "; cin >> opcion; cin.ignore();
         
         switch (opcion){
             case 'a':
@@ -83,7 +83,7 @@ Vinos llenandovino(){
         }
     } while (continuar);
     
-    cout << "\n\tIngrese el costo por unidad: $"; cin >> vinolleno.PR_Venta;
+    cout << "\tIngrese el costo por unidad: $"; cin >> vinolleno.PR_Venta;
     
     return vinolleno;
 }
@@ -94,12 +94,12 @@ void AgregarInventarioVino( Vinos vino){
 
 void mostrarInventario(){
     if (lista_vinos.empty()){
-        cout << "\nInventario vacio...\n";
+        cout << "\n\tInventario vacio...\n";
     }
     else{
-        for (int i =0; i < lista_vinos.size(); i++){
+        for (int i = 0; i < lista_vinos.size(); i++){
             cout << "\n=========================================================================\n";
-            cout << "\tCodigo: " << lista_vinos[i].id << endl;;
+            cout << "\tCodigo: " << lista_vinos[i].id << endl;
             cout << "\tNombre: " << lista_vinos[i].nombre << endl;
             cout << "\tCosecha: " << lista_vinos[i].Cosecha << endl;
             cout << "\tCantidad de botellas disponibles: " << lista_vinos[i].botellas << endl;
@@ -142,6 +142,7 @@ void mostrarVino (Vinos a){
         case Shiraz: cout << "Shiraz" << endl; break;
         case Champagne: cout << "Champagne" << endl; break;
     }
+    cout << "\tBotellas disponibles: " << a.botellas << endl;
     cout << "\tPrecio por botella: $" << a.PR_Venta;
     cout << "\n=========================================================================\n";
     cout << endl;
@@ -165,38 +166,37 @@ Vinos BuscarVino(){
 void eliminarVino(){
     int codigo;
     bool encontrado = false;
-    cout << "\nIngrese el codigo del vino que desea eliminar: "; cin >> codigo; cin.ignore();
+    cout << "\n\tIngrese el codigo del vino que desea eliminar: "; cin >> codigo; cin.ignore();
     
     for (auto iter = lista_vinos.begin(); iter != lista_vinos.end(); ++iter){
         if (iter->id == codigo){
             encontrado = true;
             iter = lista_vinos.erase(iter);
-            cout << "\t\nVino eliminado exitosamente\n";
+            cout << "\t\nVino eliminado exitosamente!";
             break;
         }
     }
     if (encontrado == false){
-        cout << "\nEl codigo ingresado no pertenece a ningun producto dentro de este inventario";
+        cout << "\n\tEl codigo ingresado no pertenece a ningun producto dentro de este inventario";
     }
 }
 
 void ActualizarVino(){
     int codigo;
-    bool encontrado = false;
+    bool encontrado = true;
     bool status = true;
     bool continuar = true;
 
     if (lista_vinos.empty()){
-        cout << "\nInventario vacio...";
+        cout << "\n\tInventario vacio...";
     }
     else{
-        cout << "\nIngrese codigo del vino a modificar: "; cin >> codigo; cin.ignore();
+        cout << "\n\tIngrese codigo del vino a modificar: "; cin >> codigo; cin.ignore();
         for (auto iter = lista_vinos.begin(); iter != lista_vinos.end(); ++iter){
             if (iter->id == codigo){
-                bool encontrado = true;
                 int id, cosecha, botellas, opcion; double Pr_Venta; char tipo = 0; string nombre;
                 
-                while(status){
+                while (status){
                     cout <<"\t\nElija el dato que desea modificar: \t";
                     cout <<"\t\n1. Codigo";
                     cout <<"\t\n2. Nombre";
@@ -209,16 +209,16 @@ void ActualizarVino(){
                     
                     switch (opcion){
                         case 1:
-                            cout << "Ingrese el codigo actualizado: "; cin >> id;
+                            cout << "\tIngrese el codigo actualizado: "; cin >> id;
                             iter->id = id;
                             break;
                         case 2:
-                            cout << "Ingrese el nuevo nombre: "; getline (cin, nombre);
+                            cout << "\tIngrese el nuevo nombre: "; getline (cin, nombre);
                             iter->nombre = nombre;
                             break;
                         case 3:
-                            cout << "Ingrese el nuevo año de cosecha: "; cin >> cosecha;
-                            iter ->Cosecha = cosecha;
+                            cout << "\tIngrese el nuevo a\244o de cosecha: "; cin >> cosecha;
+                            iter->Cosecha = cosecha;
                             break;
                         case 4:
                             do{
@@ -237,7 +237,7 @@ void ActualizarVino(){
                                 cout << "\n\t-----------VINOS ESPUMADOS----------\t";
                                 cout << "\n\tI -- Shiraz\t";
                                 cout << "\n\tJ -- Champagne\t";
-                                cout << "\n\tIngrese el tipo de vino al cual desea actualizar: "; cin >> tipo; cin.ignore();
+                                cout << "\n\tIngrese el tipo de vino al cual desea actualizar: "; cin >> tipo; cin.ignore(); cout << "\n";
                                 
                                 switch (tipo){
                                     case 'a':
@@ -260,29 +260,31 @@ void ActualizarVino(){
                                     case 'I': iter->tipo = Shiraz; continuar = false; break;
                                     case 'j':
                                     case 'J': iter->tipo = Champagne; continuar = false; break;
-                                    default: cout << "\tOpcion ingresada no valida\n";
+                                    default: cout << "\tOpcion ingresada no valida";
                                 }
                             } while (continuar);
                             break;
                         case 5:
-                            cout << "Ingrese el nuevo precio de venta: $"; cin >> Pr_Venta;
-                            iter ->PR_Venta = Pr_Venta; 
+                            cout << "\tIngrese el nuevo precio de venta: $"; cin >> Pr_Venta;
+                            iter->PR_Venta = Pr_Venta; 
                             break;
                         case 6: 
-                            cout << "Ingrese la cantidad de botellas disponibles actualmente: "; cin >> botellas;
-                            iter ->botellas = botellas; 
+                            cout << "\tIngrese la cantidad de botellas disponibles actualmente: "; cin >> botellas;
+                            iter->botellas = botellas; 
                             break;
                         case 7: 
-                            status = false; break;
-                        default: cout << "Opcion no valida, ingrese otra" << endl; break;
-                        cout << "\t\nDato actualizado exitosamente!\n";
+                            status = false;
+                            break;
+                        default:
+                            cout << "\tOpcion no valida, ingrese otra" << endl;
+                            break;
                     }
                 }
             }
-        }
-        if(encontrado == false){
-            cout << "\nEl codigo ingresado no pertenece a ningun producto dentro de este inventario";
-        }
+            else if (encontrado == false){
+                cout << "\tEl codigo ingresado no pertenece a ningun producto dentro de este inventario\n";
+            }
+        }     
     }
 }
 
@@ -291,19 +293,19 @@ void borrarPorCodigo (vector <Vinos> &listaProductos, int codigo){
     bool encontrado = false;
 
     if (listaProductos.empty()){
-        cout << "No hay productos en la lista" << endl;
+        cout << "\tNo hay productos en la lista" << endl;
         return;
     }
     else{
         for (int pos = 0; pos < listaProductos.size(); pos++){
             aux =listaProductos.at(pos);
              
-            if (aux.id== codigo){
+            if (aux.id == codigo){
                 encontrado = true;
 
                 listaProductos.erase(listaProductos.begin() + pos);
 
-                cout << "Se borro el producto correctamente" << endl;
+                cout << "\tSe borro el producto correctamente" << endl;
                 break;
             }
         }
@@ -316,14 +318,14 @@ void borrarPorCodigo (vector <Vinos> &listaProductos, int codigo){
     }
  
         if (encontrado == false){
-            cout << "No habia ningun producto con ese codigo" << endl;
+            cout << "\tNo habia ningun producto con ese codigo" << endl;
         }
     }
 }
 
-void mostrarlistadepedidos(vector<Vinos>listadevinos){
+void mostrarlistadepedidos(vector <Vinos> listadevinos){
     if (listadevinos.size() == 0){
-        cout << "\nLa lista esta vacia" << endl;
+        cout << "\n\tLa lista esta vacia" << endl;
     }
     else{
         for (int i = 0; i < listadevinos.size(); i++){
@@ -356,15 +358,15 @@ void mostrarlistadepedidos(vector<Vinos>listadevinos){
 void Mostrapedidos(){
     queue <Pedido> aux = cola_pedidos;
     if (aux.empty()){
-        cout << "Cola de pedidos vacia" << endl;
+        cout << "\tCola de pedidos vacia" << endl;
     }
     else{
         while (!aux.empty()){
             Pedido aux1 = aux.front();
-            cout << "Nombre del cliente: " << aux1.nombre << endl;
-            cout << "DUI: " << aux1.dui << endl;
-            cout << "Total del cliente: $" << aux1.pagado<< endl;
-            cout << "Estado del pedido: ";
+            cout << "\tNombre del cliente: " << aux1.nombre << endl;
+            cout << "\tDUI: " << aux1.dui << endl;
+            cout << "\tTotal del cliente: $" << aux1.total << endl;
+            cout << "\tEstado del pedido: ";
             
             if (aux1.pagado == true){
                 cout << "Cancelado" << endl;
@@ -372,8 +374,10 @@ void Mostrapedidos(){
             else{
                 cout << "Sin cancelar" << endl;
             }
-            cout << "Mostrando la descripcion de los productos: ";
+            cout << "\tMostrando la descripcion de los productos: ";
             mostrarlistadepedidos (aux1.lista_de_compras);
+            aux.pop();
+            cout << "\n";
         }
     }
 }
@@ -382,10 +386,10 @@ double CobrarClientes (vector <Vinos> list){
     double suma_total = 0;
     Vinos aux1;
     if (list.size() == 0){
-        cout << "No hay productos en la lista" << endl;
+        cout << "\tNo hay productos en la lista" << endl;
     }
     else{
-        for(int i = 0; i < list.size() ; i ++){
+        for (int i = 0; i < list.size() ; i++){
             suma_total += list[i].PR_Venta;
         }
     }
@@ -425,44 +429,46 @@ void llenandoPedido(){
     pedido llenando;
     bool status = true;
 
-    cout << "\n\tIngrese el nombre del cliente: "; getline (cin, llenando.nombre);
-    cout << "\n\tIngrese el DUI del cliente: "; cin >> llenando.dui; cin.ignore();
+    cout << "\tIngrese el nombre del cliente: "; getline (cin, llenando.nombre);
+    cout << "\tIngrese el DUI del cliente: "; cin >> llenando.dui; cin.ignore();
 
     while(status){
         cout << "\n\t-------Carrito de compras ------" << endl;
-        cout << "\n\t1. Agregar nuevo producto" << endl;
-        cout << "\n\t2. Eliminar producto por codigo" << endl;
-        cout << "\n\t3. Cobrar al cliente" << endl;
-        cout << "\n\t4. Finalizar pedido" << endl;
+        cout << "\t1. Agregar nuevo producto" << endl;
+        cout << "\t2. Eliminar producto por codigo" << endl;
+        cout << "\t3. Cobrar al cliente" << endl;
+        cout << "\t4. Finalizar pedido" << endl;
         int opcion;
-        cout << "\n\tIngrese la opcion que desea ejecutar: "; cin >> opcion; cin.ignore();
+        cout << "\tIngrese la opcion que desea ejecutar: "; cin >> opcion; cin.ignore();
 
         switch (opcion){
             case 1: 
                 MostrarInventarioparaVenta (lista_compras);
+                cout << "\nVino agregado exitosamente!";
                 break;
             case 2: 
                 cout << "\n\tIngrese el codigo del producto que desea eliminar: "; cin >> id;
-                borrarPorCodigo (lista_compras,id);
+                borrarPorCodigo (lista_compras, id);
                 break;
             case 3: 
-                cout << "\n\tDescripcion del pedido: " << endl;
+                cout << "\tDescripcion del pedido: " << endl;
                 for (int i = 0; i < lista_compras.size(); i++){
                     mostrarVino (lista_compras[i]);
                 }
                 total = CobrarClientes (lista_compras);
-                llenando.total = total;
-                cout << "\n\tTotal a pagar: $" << total << endl;
+                cout << "\tTotal a pagar: $" << total << endl;
                 llenando.pagado = true;
                 cout << endl;
                 break;
             case 4: status = false; break;
-            default: cout << "Opcion ingresada no valida" << endl;
+            default: cout << "\tOpcion ingresada no valida" << endl;
                 break;
         }
     }
     llenando.lista_de_compras = lista_compras;
     // Agregando la lista de vinos al pedido
+
+    llenando.total = total;
 
     cola_pedidos.push(llenando);
     // Agregando el pedido a la cola
@@ -475,12 +481,11 @@ void menuInventraio(){
     int opcion;
     bool status = true;
     while (status){
-        cout << endl;
         cout << "\n\t --------Inventario--------";
         cout << "\n\t1. Agregar Vino";
         cout << "\n\t2. Eliminar Vino";
         cout << "\n\t3. Mostrar Inventario";
-        cout << "\n\t4. Actualizar informacion de un Vino"; 
+        cout << "\n\t4. Actualizar informacion de un vino"; 
         cout << "\n\t5. Salir";
         cout << "\n\tIngrese la opcion que desea ejecutar: "; cin >> opcion; cin.ignore();
         
@@ -489,8 +494,8 @@ void menuInventraio(){
             case 2: eliminarVino(); break;
             case 3: mostrarInventario(); break;
             case 4: ActualizarVino(); break;
-            case 5:  status = false; break;
-            default: cout << "\nOpcion ingresada no valida";
+            case 5: status = false; break;
+            default: cout << "\n\tOpcion ingresada no valida";
         }
     }
 }
@@ -499,41 +504,62 @@ void menuPedidos(){
     int opcion;
     bool status = true;
     while (status){
-        cout << endl;
         cout << "\n\t --------Pedidos--------";
         cout << "\n\t1.Agregar Pedido";
         cout << "\n\t2.Mostrar Pedidos"; 
         cout << "\n\t3.Regresar";
-        cout << "\n\tIngrese la opcion que desea ejecutar: "; cin >> opcion; cin.ignore();
+        cout << "\n\tIngrese la opcion que desea ejecutar: "; cin >> opcion; cin.ignore(); cout << "\n";
         
         switch (opcion){
-            case 1: llenandoPedido(); break;
+            case 1:
+                if (lista_vinos.empty()){
+                    cout << "\tNo hay vinos en el inventario..." << endl;
+                }
+                else{
+                    llenandoPedido();
+                }
+                break;
             case 2: Mostrapedidos(); break;
             case 3: status = false; break;
-            default: cout << "\nOpcion ingresada no valida";
+            default: cout << "\n\tOpcion ingresada no valida";
         }
     }
 }
 
+double ganacias_totales (queue <Pedido> lista){
+    queue <Pedido> aux = lista;
+    double ganacias = 0;
+    if (aux.empty()){
+        cout << "\n\tCola de pedidos vacia, no han habido ventas..."  << endl;
+    }
+    else{
+        while (!aux.empty()){
+            ganacias += aux.front().total;
+            aux.pop();
+        }
+    }
+    return ganacias;
+}
 
 int main(){
     int opcion;
     bool status = true;
     while (status){
-        cout << endl;
-        cout << "\n\t **** Bienvenido a Raisin Dore ****";
+        cout << "\n\t **** BIENVENIDO A RAISIN DORE ****";
         cout << "\n\tComo podemos ayudarte?" << endl;
         cout << "\n\t1. Realizar Pedidos";
-        cout << "\n\t2. Administrar Inventario"; 
-        //  calcular ganacias (aqui va esa opcion)
-        cout << "\n\t3. Salir";
+        cout << "\n\t2. Administrar Inventario";
+        cout << "\n\t3. Mostrar ganancias";
+        cout << "\n\t4. Salir";
         cout << "\n\tIngrese la opcion que desea ejecutar: "; cin >> opcion; cin.ignore();
         
         switch (opcion){
             case 1: menuPedidos(); break;
             case 2: menuInventraio(); break;
-            case 3: status = false; break;
-            default: cout << "\nOpcion ingresada no valida";
+            case 3: cout << "\n\tLas ganancias totales de la venta de vinos son: $" << ganacias_totales(cola_pedidos) << endl; break;
+            case 4: status = false; break;
+            default: cout << "\n\tOpcion ingresada no valida";
         }
     }
+    return 0;
 }
