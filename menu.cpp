@@ -20,6 +20,22 @@ void menu(string extra=""){
   }else{cout << "\n\t"<<extra<<":";}
 }
 
+//Clients menu Script(Just text)
+void menu_clientes(string extra=""){
+  printf("\033c");
+  cout << endl;
+  cout << "\n\tMenu Principal";
+  cout << "\n\t1.Agregar clientes";  
+  cout << "\n\t2.Eliminar clientes";
+  cout << "\n\t3.Mostrar clientes";
+  cout << "\n\t4.Modificar informacion de un cliente";
+  cout << "\n\t5.Salir\n";
+  if(extra==""){
+   cout << "\n\tIngrese la opcion que desea ejecutar:";
+  }else{cout << "\n\t"<<extra<<":";}
+}
+
+
 
 //Wines menu Script(Just text)
 void menu_vinos(string extra= ""){

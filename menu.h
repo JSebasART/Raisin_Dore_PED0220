@@ -8,3 +8,5 @@ void menu(string extra="");
 void menu_pedidos(string extra="");
 
 void menu_tipos_vinos(string extra="");
+
+void menu_clientes(string extra="");
