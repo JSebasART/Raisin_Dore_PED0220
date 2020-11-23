@@ -96,7 +96,7 @@ void Modificarcliente(){
   string name;
   printf("\033c");
   Mostrarclientes(false);
-  cout<<"\nIngrese el ID del cliente de quien desea modificar informacion... ";
+  cout<<"\nIngrese el cliente de quien desea modificar informacion... ";
   cin>>cliente;cliente--;
   printf("\033c");
   cout << endl;
