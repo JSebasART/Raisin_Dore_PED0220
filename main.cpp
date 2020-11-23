@@ -57,10 +57,10 @@ void wait(){
 void Agregarcliente(){
   cliente actual;
     printf("\033c");
-  cout << "\n\tIngrese el id del cliente:\n\t";cin>>actual.id_cliente;cin.ignore();
+  cout << "\n\tIngrese el ID del cliente:\n\t";cin>>actual.id_cliente;cin.ignore();
   cout << "\n\tIngrese el nombre del cliente\n\t"; getline(cin,actual.nombre);
   cout << "\n\tIngrese el apellido del cliente\n\t"; getline(cin,actual.apellido);
-  cout << "\n\tIngrese el numero de dui del cliente\n\t"; cin>>actual.dui;cin.ignore();
+  cout << "\n\tIngrese el numero de DUI del cliente\n\t"; cin>>actual.dui;cin.ignore();
 
   lista_clientes.push_back(actual);
   actual={};
@@ -69,7 +69,7 @@ void Agregarcliente(){
 void Eliminarcliente(){
     printf("\033c");
   int id;
-  cout << "\n\tIngrese el id del cliente a elmininar:\n\t";cin>>id;cin.ignore();
+  cout << "\n\tIngrese el ID del cliente a eliminar:\n\t";cin>>id;cin.ignore();
   for(int i=0;i<lista_clientes.size();i++){
     if(lista_clientes[i].id_cliente==id){
       lista_clientes.erase(lista_clientes.begin()+i);
@@ -84,7 +84,7 @@ void Mostrarclientes(bool waits=true){
     cout<<"\n"<<i+1<<".\t"<<lista_clientes[i].id_cliente<<"\t\t"<<lista_clientes[i].nombre<<" "<<lista_clientes[i].apellido<<"\t\t\t"<<lista_clientes[i].dui;
   }
   if(waits){
-    cout<<"\npresione cualquier tecla para continuar...";
+    cout<<"\nPresione cualquier tecla para continuar...";
     wait();
   }else{
 
@@ -96,7 +96,7 @@ void Modificarcliente(){
   string name;
   printf("\033c");
   Mostrarclientes(false);
-  cout<<"\ningrese el cliente de quien desee modificar informacion...";
+  cout<<"\nIngrese el cliente de quien desea modificar informacion...";
   cin>>cliente;cliente--;
   printf("\033c");
   cout << endl;
@@ -211,7 +211,7 @@ void mostrarInventario(){
         case Champagne : cout << "Champagne"; break;
         }
 
-        cout << "\tPrecio por botella : $" << lista_vinos[i].PR_Venta;
+        cout << "\tPrecio por botella: $" << lista_vinos[i].PR_Venta;
     }
         cout << "\n=========================================================================\n";
         
@@ -280,7 +280,7 @@ void ActualizarVino(){
             iter->nombre = nombre; 
             break;
             case 3:
-            cout << "Ingrese el nuevo año de cosecha:"; cin>>cosecha;
+            cout << "Ingrese el nuevo a\244o de cosecha:"; cin>>cosecha;
             iter ->Cosecha = cosecha;
              break;
             case 4:
@@ -318,8 +318,8 @@ void ActualizarVino(){
                status = false ; break;
             break;
 
-            default : cout << "opcion no valida ingrese otra" << endl; break;
-            cout << "\t\nDato actualizado Exitozamente!!!\n";
+            default : cout << "Opcion no valida, ingrese otra" << endl; break;
+            cout << "\t\nDato actualizado Exitosamente!!!\n";
         }
     }
         }
@@ -581,7 +581,7 @@ void pedidos(){
                 break;
             case 2: Mostrapedidos(); break;
             case 3: status = false; break;
-            default: menu_pedidos("Porfavor seleccione una opcion correcta:");
+            default: menu_pedidos("Por favor, seleccione una opcion correcta:");
         }
     }
 }
