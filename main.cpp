@@ -96,7 +96,7 @@ void Modificarcliente(){
   string name;
   printf("\033c");
   Mostrarclientes(false);
-  cout<<"\nIngrese el cliente de quien desea modificar informacion...";
+  cout<<"\nIngrese el ID del cliente de quien desea modificar informacion... ";
   cin>>cliente;cliente--;
   printf("\033c");
   cout << endl;
@@ -104,7 +104,7 @@ void Modificarcliente(){
   cout << "\n\t1.DUI";
   cout << "\n\t2.Nombre";
   cout << "\n\t3.Apellido"; 
-  cout << "\n\n\tIngrese una opcion"; 
+  cout << "\n\n\tIngrese una opcion: "; 
   cin>>opcion;
   cin.ignore();
         
@@ -187,7 +187,7 @@ void AgregarInventarioVino( Vinos vino){
 void mostrarInventario(){
 
     if(lista_vinos.empty()){
-        cout << "\nInventario vacio .....\n";
+        cout << "\nInventario vacio ...\n";
     }else{
 
     for(int i =0;i < lista_vinos.size();i++){
@@ -319,7 +319,7 @@ void ActualizarVino(){
             break;
 
             default : cout << "Opcion no valida, ingrese otra" << endl; break;
-            cout << "\t\nDato actualizado Exitosamente!!!\n";
+            cout << "\t\nDato actualizado exitosamente!!!\n";
         }
     }
         }
