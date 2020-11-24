@@ -47,6 +47,9 @@ void menu_vinos(string extra= ""){
    cout << "\n\t3.Mostrar Inventario";
    cout << "\n\t4.Actualizar informacion de un Vino";
    cout << "\n\t5.Salir\n";
+   if(extra==""){
+   cout << "\n\tIngrese la opcion que desea ejecutar:";
+  }else{cout << "\n\t"<<extra<<":";}
 }
 
 void menu_pedidos(string extra=""){

@@ -4,6 +4,7 @@
 #include <queue>
 #include <ctype.h>
 #include "menu.h"
+#include "validations.h"
 
 using namespace std;
 
@@ -46,7 +47,9 @@ void wait(){
   cin>>a;
   while(1){
     if(cin.fail())
-  {}
+  {
+    break;
+  }
   if(!cin.fail())
   break;
   }
@@ -57,10 +60,10 @@ void wait(){
 void Agregarcliente(){
   cliente actual;
     printf("\033c");
-  cout << "\n\tIngrese el ID del cliente:\n\t";cin>>actual.id_cliente;cin.ignore();
+  cout << "\n\tIngrese el id del cliente:\n\t";actual.id_cliente=cinnumber();cin.ignore();
   cout << "\n\tIngrese el nombre del cliente\n\t"; getline(cin,actual.nombre);
   cout << "\n\tIngrese el apellido del cliente\n\t"; getline(cin,actual.apellido);
-  cout << "\n\tIngrese el numero de DUI del cliente\n\t"; cin>>actual.dui;cin.ignore();
+  cout << "\n\tIngrese el numero de dui del cliente\n\t"; actual.dui=cinnumber();cin.ignore();
 
   lista_clientes.push_back(actual);
   actual={};
@@ -69,7 +72,7 @@ void Agregarcliente(){
 void Eliminarcliente(){
     printf("\033c");
   int id;
-  cout << "\n\tIngrese el ID del cliente a eliminar:\n\t";cin>>id;cin.ignore();
+  cout << "\n\tIngrese el id del cliente a elmininar:\n\t";cin>>id;cin.ignore();
   for(int i=0;i<lista_clientes.size();i++){
     if(lista_clientes[i].id_cliente==id){
       lista_clientes.erase(lista_clientes.begin()+i);
@@ -84,7 +87,7 @@ void Mostrarclientes(bool waits=true){
     cout<<"\n"<<i+1<<".\t"<<lista_clientes[i].id_cliente<<"\t\t"<<lista_clientes[i].nombre<<" "<<lista_clientes[i].apellido<<"\t\t\t"<<lista_clientes[i].dui;
   }
   if(waits){
-    cout<<"\nPresione cualquier tecla para continuar...";
+    cout<<"\npresione cualquier tecla para continuar...";
     wait();
   }else{
 
@@ -96,7 +99,7 @@ void Modificarcliente(){
   string name;
   printf("\033c");
   Mostrarclientes(false);
-  cout<<"\nIngrese el cliente de quien desea modificar informacion... ";
+  cout<<"\ningrese el cliente de quien desee modificar informacion...";
   cin>>cliente;cliente--;
   printf("\033c");
   cout << endl;
@@ -104,7 +107,7 @@ void Modificarcliente(){
   cout << "\n\t1.DUI";
   cout << "\n\t2.Nombre";
   cout << "\n\t3.Apellido"; 
-  cout << "\n\n\tIngrese una opcion: "; 
+  cout << "\n\n\tIngrese una opcion"; 
   cin>>opcion;
   cin.ignore();
         
@@ -149,8 +152,10 @@ void clientes(){
 }
 // Aqui todos los metodos de inventario_de_vinos
 Vinos llenandovino(){
+    int c=1;
+    if(!lista_vinos.empty()){c=lista_vinos.back().id;c++;};
     vino vinolleno;
-    cout << "\n\tIngrese el codigo del vino:\n\t";cin>>vinolleno.id;cin.ignore();
+    cout << "\n\tCodigo del vino:"<<c<<"\n\t";vinolleno.id=c;cin.ignore();
     cout << "\n\tIngrese el nombre del vino\n\t"; getline(cin,vinolleno.nombre);
     cout << "\n\tIngrese el a\244o de la cosecha:\n\t"; cin>>vinolleno.Cosecha;
     cout << "\n\tIngrese la cantidad de botellas:\n\t"; cin>>vinolleno.botellas;
@@ -185,9 +190,9 @@ void AgregarInventarioVino( Vinos vino){
       lista_vinos.push_back(vino);
 }
 void mostrarInventario(){
-
+    printf("\033c");
     if(lista_vinos.empty()){
-        cout << "\nInventario vacio ...\n";
+        cout << "\nInventario vacio .....\n";
     }else{
 
     for(int i =0;i < lista_vinos.size();i++){
@@ -211,13 +216,14 @@ void mostrarInventario(){
         case Champagne : cout << "Champagne"; break;
         }
 
-        cout << "\tPrecio por botella: $" << lista_vinos[i].PR_Venta;
+        cout << "\tPrecio por botella : $" << lista_vinos[i].PR_Venta;
     }
         cout << "\n=========================================================================\n";
         
         
 
   }
+  cout<<"Precione una tecla para continuar...";
   wait();
 }
 void eliminarVino(){
@@ -280,7 +286,7 @@ void ActualizarVino(){
             iter->nombre = nombre; 
             break;
             case 3:
-            cout << "Ingrese el nuevo a\244o de cosecha:"; cin>>cosecha;
+            cout << "Ingrese el nuevo año de cosecha:"; cin>>cosecha;
             iter ->Cosecha = cosecha;
              break;
             case 4:
@@ -318,8 +324,8 @@ void ActualizarVino(){
                status = false ; break;
             break;
 
-            default : cout << "Opcion no valida, ingrese otra" << endl; break;
-            cout << "\t\nDato actualizado exitosamente!!!\n";
+            default : cout << "opcion no valida ingrese otra" << endl; break;
+            cout << "\t\nDato actualizado Exitozamente!!!\n";
         }
     }
         }
@@ -581,17 +587,26 @@ void pedidos(){
                 break;
             case 2: Mostrapedidos(); break;
             case 3: status = false; break;
-            default: menu_pedidos("Por favor, seleccione una opcion correcta:");
+            default: menu_pedidos("Porfavor seleccione una opcion correcta:");
         }
     }
 }
 // Aqui todos los metodos de estadisticas
-
-//menu de estadisticas
-void estadisticas(){
-
+double CalcularGanancias()
+{
+    queue<Pedido> copia = cola_pedidos;
+    double total = 0;
+    while(!copia.empty())
+    {
+        vector<Vinos> actual = copia.front().lista_de_compras;
+        for(int i = 0; i < actual.size(); i++){
+            total += actual.at(i).PR_Venta;
+        }
+        copia.pop();
+    }
+return total;
+    
 }
-
 
 int main()
 {
@@ -610,7 +625,9 @@ int main()
           inventario();
         break;
         case 4:
-          estadisticas();
+          cout << "\n\tLas ganancias totales de la venta de vinos son: $" << CalcularGanancias() << endl; 
+          cout<<"ingrese cualquier tecla para continuar...";
+          wait();break;
         break;
         default:
           menu("Ingrese una opcion correcta:");
