@@ -11,7 +11,7 @@ Programa creado para una tienda de vinos, la cual contiene un inventario muy com
 
 ## ESTRUCTURAS DINÁMICAS UTILIZADAS :
 -Vector:
-Utilizada principalmente para almacenar la lista de vinos para el inventario y la lista de clientes que maneja el negocio, también se ocupa otra lista inicalizada dentro del registro "Pedido" que sirve para almacenar los vinos que el cliente quiere agregar su pedido.
+Utilizada principalmente para almacenar la lista de vinos para el inventario y la lista de clientes que maneja el negocio, también se ocupa otra lista inicializada dentro del registro "Pedido" que sirve para almacenar los vinos que el cliente quiere agregar su pedido.
 
 -Cola (librería "queue"):
 Utilizada para una cola de pedidos, que permite una mayor eficiencia el momento de manipular los diferentes elementos dentro de la cola.
