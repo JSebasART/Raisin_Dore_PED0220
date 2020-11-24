@@ -2,4 +2,8 @@
 
 using namespace std;
 
-int cinnumber();
+int cinint();
+
+int cindouble();
+
+void wait();
