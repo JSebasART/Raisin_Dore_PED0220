@@ -4,6 +4,6 @@ using namespace std;
 
 int cinint();
 
-int cindouble();
+double cindouble();
 
 void wait();

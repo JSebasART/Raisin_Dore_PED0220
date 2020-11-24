@@ -148,7 +148,7 @@ Vinos llenandovino(){
     char opcion = 0;
     do{
     menu_tipos_vinos();
-    opcion=cinint();
+    cin>>opcion;
     opcion=toupper(opcion);
     switch (opcion){
         case 'A': vinolleno.tipo = Merlot;continuar = false; break;
@@ -270,7 +270,7 @@ void ActualizarVino(){
             case 4:
     do{
     menu_tipos_vinos();
-    opcion=cinint();
+    cin>>opcion;
     opcion=toupper(opcion);
     switch (tipo){
         case 'A': iter ->tipo = Merlot;continuar = false; break;
@@ -393,6 +393,7 @@ void Mostrapedidos(){
             cout << "\n";
         }
     }
+    wait();
 }
 double CobrarClientes (vector <Vinos> list){
     double suma_total = 0;
