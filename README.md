@@ -10,8 +10,8 @@
 Programa creado para una tienda de vinos, la cual contiene un inventario muy completo donde se pueden agregar vinos, modificar su información y eliminarlos del inventario, también se encarga de realizar pedidos de manera sencilla, contando con una estructura de tipo "carrito de compras" donde el usuario podrá elegir entre los vinos disponibles cuál es el que desea adquirir y eliminar un producto por medio de su código. Por último, este programa también presenta las ganancias totales.
 
 ## ESTRUCTURAS DINÁMICAS UTILIZADAS :
--Listas enlazadas simples (librería "vector"):
-Utilizada  para almacenar el registro "Vinos".
+-Vector:
+Utilizada principalmente para almacenar la lista de vinos para el inventario y la lista de clientes que maneja el negocio, también se ocupa otra lista inicalizada dentro del registro "Pedido" que sirve para almacenar los vinos que el cliente quiere agregar su pedido.
 
 -Cola (librería "queue"):
-Para contener el registro "Pedido", la cual también posee una lista  enlazada simple dentro, la cual almacena la lista de vinos que el cliente quiere agregar a su pedido.
+Utilizada para una cola de pedidos, que permite una mayor eficiencia el momento de manipular los diferentes elementos dentro de la cola.
